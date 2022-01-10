@@ -13,6 +13,7 @@ export default class Button extends React.Component {
   }
 
   componentWillUnmount() {
+    Mousetrap.unbind(this.props.shortcut);
   }
 
   render() {

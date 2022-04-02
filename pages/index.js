@@ -17,7 +17,7 @@ export default function Home({words}) {
   return (
     <>
       <Head>
-        <title>Arabic Word Practice</title>
+        <title>Arabic Transcription Practice</title>
         <link rel="icon" href="/favicon.ico" />
         <link href="https://fonts.googleapis.com/css2?family=Skranji:wght@700&display=swap" rel="stylesheet" />
       </Head>
@@ -26,7 +26,7 @@ export default function Home({words}) {
         <div className="container">
           <div className="row">
             <div className="col">
-              <h1 className="display-1 text-center text-light mb-0" style={{fontFamily: "Skranji" }}>Arabic Word Practice</h1>
+              <h1 className="display-1 text-center text-light mb-0" style={{fontFamily: "Skranji" }}>Arabic Transcription Practice</h1>
             </div>
           </div>
         </div>

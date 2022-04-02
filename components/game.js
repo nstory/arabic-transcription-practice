@@ -2,10 +2,12 @@ import {sample} from "lodash";
 import React from "react";
 import {ArrowClockwise, ArrowRight, VolumeUpFill, BoxArrowUpRight} from "react-bootstrap-icons";
 import Button from "./button";
+import getConfig from "next/config";
 
 const STATUS_GUESSING = "STATUS_GUESSING";
 const STATUS_GUESSED_CORRECT = "STATUS_GUESSED_CORRECT";
 const STATUS_GUESSED_INCORRECT = "STATUS_GUESSED_INCORRECT";
+const assetPrefix = getConfig().publicRuntimeConfig.assetPrefix;
 
 export default class Game extends React.Component {
   constructor(props) {
@@ -48,7 +50,7 @@ export default class Game extends React.Component {
 
             <div className="mb-3">
               <div style={{visibility: status === STATUS_GUESSING ? "hidden" : "visible"}}>
-                <audio ref={this.audioRef} src={word.audio_path} controls />
+                <audio ref={this.audioRef} src={`${assetPrefix}${word.audio_path}`} controls />
               </div>
             </div>
 

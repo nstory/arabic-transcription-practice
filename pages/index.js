@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import {ArrowClockwise, ArrowRight, VolumeUpFill} from "react-bootstrap-icons";
 import 'bootstrap/dist/css/bootstrap.css';
 import {allWords} from "../lib/words";

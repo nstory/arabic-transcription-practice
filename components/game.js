@@ -41,7 +41,7 @@ export default class Game extends React.Component {
             <p className="text-center fs-1">{word.arabic}</p>
 
             <form className="form-floating mb-3" onSubmit={this.handleSubmitGuess}>
-              <input ref={this.guessInputRef} id="guess" className={`form-control form-control-lg ${status == STATUS_GUESSED_CORRECT ? 'is-valid' : ''} ${status == STATUS_GUESSED_INCORRECT ? 'is-invalid' : ''}`} type="text" placeholder="..." autoComplete="off" autoFocus onChange={this.handleChangeGuess} value={this.state.guess} disabled={status != STATUS_GUESSING} />
+              <input ref={this.guessInputRef} id="guess" className={`form-control form-control-lg ${status == STATUS_GUESSED_CORRECT ? 'is-valid' : ''} ${status == STATUS_GUESSED_INCORRECT ? 'is-invalid' : ''}`} type="text" placeholder="..." autoComplete="off" autoFocus onChange={this.handleChangeGuess} value={this.state.guess} disabled={status != STATUS_GUESSING} spellCheck="off" autoCapitalize="off" autoCorrect="off" />
               <label htmlFor="guess">Transcribe the word and press <kbd>Enter</kbd></label>
             </form>
 
@@ -104,6 +104,7 @@ export default class Game extends React.Component {
 
   handleSubmitGuess = (event) => {
     event.preventDefault();
+    this.guessInputRef.current.blur();
     if (this.state.guess == this.state.word.phonetic) {
       this.setState({status: STATUS_GUESSED_CORRECT});
       if (!this.state.retry) {

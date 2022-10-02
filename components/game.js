@@ -110,7 +110,8 @@ export default class Game extends React.Component {
   handleSubmitGuess = (event) => {
     event.preventDefault();
     this.guessInputRef.current.blur();
-    if (this.state.guess == this.state.word.phonetic) {
+    const guess = this.state.guess.replaceAll(/’|‘/g, "'"); // iOS has funny '
+    if (guess == this.state.word.phonetic) {
       this.setState({status: STATUS_GUESSED_CORRECT});
       if (!this.state.retry) {
         this.setState({correct: this.state.correct + 1});

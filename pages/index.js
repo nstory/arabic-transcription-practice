@@ -18,7 +18,7 @@ export default function Home({words}) {
       <Head>
         <title>Arabic Transcription Practice</title>
         <link rel="icon" href="/favicon.ico" />
-        <link href="https://fonts.googleapis.com/css2?family=Skranji:wght@700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic&family=Noto+Sans+Arabic&family=Skranji:wght@700&display=swap" rel="stylesheet" />
       </Head>
 
       <div className="mb-3" style={{backgroundColor: "#678677"}}>

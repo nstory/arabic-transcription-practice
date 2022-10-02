@@ -8,6 +8,7 @@ const STATUS_GUESSING = "STATUS_GUESSING";
 const STATUS_GUESSED_CORRECT = "STATUS_GUESSED_CORRECT";
 const STATUS_GUESSED_INCORRECT = "STATUS_GUESSED_INCORRECT";
 const assetPrefix = getConfig().publicRuntimeConfig.assetPrefix;
+const FONT_FAMILES = ["Noto Sans Arabic", "Noto Naskh Arabic"];
 
 export default class Game extends React.Component {
   constructor(props) {
@@ -16,7 +17,8 @@ export default class Game extends React.Component {
       guess: "",
       status: STATUS_GUESSING,
       correct: 0,
-      incorrect: 0
+      incorrect: 0,
+      fontFamily: FONT_FAMILES[0],
     };
     this.audioRef = React.createRef();
     this.guessInputRef = React.createRef();
@@ -27,7 +29,7 @@ export default class Game extends React.Component {
   }
 
   render() {
-    const {word, status, correct, incorrect} = this.state;
+    const {word, status, correct, incorrect, fontFamily} = this.state;
 
     // before componentDidMount there's no word; be blank
     if (!word) {
@@ -38,7 +40,7 @@ export default class Game extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-            <p className="text-center fs-1">{word.arabic}</p>
+            <p className="text-center fs-1" style={{fontFamily}}>{word.arabic}</p>
 
             <form className="form-floating mb-3" onSubmit={this.handleSubmitGuess}>
               <input ref={this.guessInputRef} id="guess" className={`form-control form-control-lg ${status == STATUS_GUESSED_CORRECT ? 'is-valid' : ''} ${status == STATUS_GUESSED_INCORRECT ? 'is-invalid' : ''}`} type="text" placeholder="..." autoComplete="off" autoFocus onChange={this.handleChangeGuess} value={this.state.guess} disabled={status != STATUS_GUESSING} spellCheck="off" autoCapitalize="off" autoCorrect="off" />
@@ -59,6 +61,9 @@ export default class Game extends React.Component {
               <Button enabled={status != STATUS_GUESSING} className="me-3 mb-3" onClick={this.playSound} shortcut="p"><VolumeUpFill className="me-1" /> <u>P</u>lay Again</Button>
               <Button enabled={status != STATUS_GUESSING} className="me-3 mb-3" onClick={this.retry} shortcut="r"><ArrowClockwise className="me-1" /> <u>R</u>etry</Button>
               <Button onClick={this.handleNext} enabled={status != STATUS_GUESSING} className="mb-3 me-3" shortcut="n"><ArrowRight className="me-1" /> <u>N</u>ext</Button>
+              <select value={fontFamily} className="form-select mb-3 me-3 d-inline w-auto" onChange={this.handleChangeFontFamily}>
+                { FONT_FAMILES.map(f => <option key={f} value={f}>{f}</option>) }
+              </select>
             </div>
 
             <div className="mb-3 text-center">
@@ -121,6 +126,10 @@ export default class Game extends React.Component {
 
   handleChangeGuess = (event) => {
     this.setState({guess: event.target.value});
+  }
+
+  handleChangeFontFamily = (event) => {
+    this.setState({fontFamily: event.target.value});
   }
 }
 

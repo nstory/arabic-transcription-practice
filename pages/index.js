@@ -25,7 +25,7 @@ export default function Home({words}) {
         <div className="container">
           <div className="row">
             <div className="col">
-              <h1 className="display-1 text-center text-light mb-0" style={{fontFamily: "Skranji" }}>Arabic Transcription Practice</h1>
+              <h1 className="app-title text-center text-light my-3 fs-2" style={{fontFamily: "Skranji" }}>Arabic Transcription Practice</h1>
             </div>
           </div>
         </div>
